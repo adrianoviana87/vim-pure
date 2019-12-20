@@ -1,3 +1,8 @@
+if has('win64')
+  let g:python_host_prog = 'c:\Python27\python.exe'
+  let g:python3_host_prog = 'c:\Python38\python.exe'
+endif
+
 " ****** Important ******
 set nocompatible
 

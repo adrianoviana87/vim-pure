@@ -121,6 +121,8 @@ set guioptions-=m " no menubar
 
 " ****** Insert mode ******
 inoremap <c-J> <esc>
+inoremap jk <esc>
+inoremap kj <esc>
 
 
 

@@ -134,6 +134,9 @@ cnoremap <c-j> <up>
 cnoremap <c-k> <down>
 " ****** Normal mode ******
 nnoremap ; :
+nnoremap <leader>. :CocAction<cr>
+nnoremap <leader>p :CocCommand<cr>
+nnoremap <leader>l :CocList lines<cr>
 
 " go to previous next error
 nnoremap <down> :cnext<cr>
@@ -203,7 +206,6 @@ Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree'
 Plug 'ayu-theme/ayu-vim'
 Plug 'flazz/vim-colorschemes'
 Plug 'xolox/vim-colorscheme-switcher'
@@ -256,13 +258,6 @@ function MySetVueOptions()
 
 
 
- " ****** neerdtreee ******
-nnoremap <c-n> :NERDTreeToggle<cr>
-let NERDTreeMinimalUI=1
-let NERDTreeMinimalMenu=0
-
-
-
 
 " ****** ctrlp ******
 if executable('rg')
@@ -273,3 +268,4 @@ endif
 nnoremap <c-p> :CocList files<cr>
 nnoremap <c-m> :CocList mru<cr>
 nnoremap <leader>f :CocList grep<cr>
+nnoremap <c-n> :CocCommand explorer<cr>

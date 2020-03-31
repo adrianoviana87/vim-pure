@@ -137,6 +137,8 @@ nnoremap ; :
 nnoremap <leader>. :CocAction<cr>
 nnoremap <leader>p :CocCommand<cr>
 nnoremap <leader>l :CocList lines<cr>
+nnoremap <leader>cc :CocList colors<cr>
+nnoremap <leader>P :CocList vimcommands<cr>
 
 " go to previous next error
 nnoremap <down> :cnext<cr>
@@ -221,7 +223,7 @@ call plug#end()
 
 " ****** ALE ******
 let g:ale_linters = {
-\ 'typescript': ['eslint'],
+\ 'typescript': [],
 \ 'javascript': ['eslint']
 \}
 
@@ -234,7 +236,7 @@ let g:airline_powerline_fonts = 1
 
 
 " ****** airline ******
-let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 0
 let g:airline_theme='kolor'
 
 

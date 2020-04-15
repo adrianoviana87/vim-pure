@@ -139,6 +139,13 @@ nnoremap <leader>p :CocCommand<cr>
 nnoremap <leader>l :CocList lines<cr>
 nnoremap <leader>cc :CocList colors<cr>
 nnoremap <leader>P :CocList vimcommands<cr>
+nnoremap <c-p> :CocList files<cr>
+nnoremap <c-m> :CocList mru<cr>
+nnoremap <leader>f :CocList grep<cr>
+nnoremap <c-n> :CocCommand explorer<cr>
+nnoremap <leader>= :Goyo<cr>
+nnoremap <leader>+ :Limelight!!<cr>
+nnoremap <leader>o :CocList outline<cr>
 
 " go to previous next error
 nnoremap <down> :cnext<cr>
@@ -201,20 +208,19 @@ set path+=**
 " ****** Plugins ******
 call plug#begin('~/dot-files/vim-pure/plugged')
 
+Plug 'kana/vim-textobj-user'
+Plug 'sgur/vim-textobj-parameter'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'ayu-theme/ayu-vim'
 Plug 'flazz/vim-colorschemes'
-Plug 'xolox/vim-colorscheme-switcher'
-Plug 'xolox/vim-misc'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'tpope/vim-fugitive'
+Plug 'morhetz/gruvbox'
+Plug 'mhinz/vim-startify'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim'
 
 call plug#end()
 
@@ -242,7 +248,7 @@ let g:airline_theme='kolor'
 
 
 " ****** colorscheme ******
-silent! colorscheme codedark
+silent! colorscheme OceanicNext
 
 
 
@@ -261,13 +267,3 @@ function MySetVueOptions()
 
 
 
-" ****** ctrlp ******
-if executable('rg')
-  set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
-endif
-nnoremap <c-p> :CocList files<cr>
-nnoremap <c-m> :CocList mru<cr>
-nnoremap <leader>f :CocList grep<cr>
-nnoremap <c-n> :CocCommand explorer<cr>

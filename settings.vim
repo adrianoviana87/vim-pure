@@ -218,9 +218,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
-Plug 'mhinz/vim-startify'
-Plug 'junegunn/limelight.vim'
-Plug 'junegunn/goyo.vim'
 
 call plug#end()
 

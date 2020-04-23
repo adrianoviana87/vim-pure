@@ -27,6 +27,7 @@ set wildignore+=node_modues/**
 
 " ****** editing text ******
 set backspace=indent,eol,start
+
 set undodir=~/vimundo
 
 
@@ -203,63 +204,66 @@ set smartcase
 set path+=**
 
 
+if !exists('g:vscode')
 
+  " ****** Plugins ******
+  call plug#begin('~/dot-files/vim-pure/plugged')
 
-" ****** Plugins ******
-call plug#begin('~/dot-files/vim-pure/plugged')
+  Plug 'kana/vim-textobj-user'
+  Plug 'sgur/vim-textobj-parameter'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-commentary'
+  Plug 'w0rp/ale'
+  Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'flazz/vim-colorschemes'
+  Plug 'morhetz/gruvbox'
+  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+  Plug 'junegunn/goyo.vim'
 
-Plug 'kana/vim-textobj-user'
-Plug 'sgur/vim-textobj-parameter'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'w0rp/ale'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'flazz/vim-colorschemes'
-Plug 'morhetz/gruvbox'
-
-call plug#end()
-
-
-
-
-" ****** ALE ******
-let g:ale_linters = {
-\ 'typescript': [],
-\ 'javascript': ['eslint']
-\}
-
-" Set this. Airline will handle the rest.
-let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline_powerline_fonts = 1
+  call plug#end()
 
 
 
 
-" ****** airline ******
-let g:airline#extensions#tabline#enabled = 0
-let g:airline_theme='kolor'
+  " ****** ALE ******
+  let g:ale_linters = {
+  \ 'typescript': [],
+  \ 'javascript': ['eslint']
+  \}
+
+  " Set this. Airline will handle the rest.
+  let g:airline#extensions#ale#enabled = 1
+  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+  let g:airline_powerline_fonts = 1
 
 
 
-" ****** colorscheme ******
-silent! colorscheme OceanicNext
+
+  " ****** airline ******
+  let g:airline#extensions#tabline#enabled = 0
+  let g:airline_theme='kolor'
+
+
+
+  " ****** colorscheme ******
+  silent! colorscheme OceanicNext
 
 
 
 
-" ****** vuejs ******
-augroup VueJsFiletypeGroup
-    autocmd!
-    au BufNewFile,BufRead *.vue call MySetVueOptions()
-augroup END
-function MySetVueOptions()
-  set filetype=vue
-  set syntax=html
- endfunction
+  " ****** vuejs ******
+  augroup VueJsFiletypeGroup
+      autocmd!
+      au BufNewFile,BufRead *.vue call MySetVueOptions()
+  augroup END
+  function MySetVueOptions()
+    set filetype=vue
+    set syntax=html
+   endfunction
 
+endif
 
 
 

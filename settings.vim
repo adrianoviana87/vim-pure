@@ -221,7 +221,8 @@ if !exists('g:vscode')
   Plug 'morhetz/gruvbox'
   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
   Plug 'junegunn/goyo.vim'
-
+  Plug 'arrufat/vala.vim'
+  Plug 'editorconfig/editorconfig-vim'
   call plug#end()
 
 

@@ -102,7 +102,7 @@ set mouse=a
 
 
 " ****** gui ******
-set guifont=SauceCodePro\ NF:h12
+set guifont=JetBrainsMono\ NF:h10
 set guioptions+=! " execute commands inside vim terminal emulator
 set guioptions-=a " set selection to system clipboard but not in * register
 set guioptions+=P " set selection to system clipboard in + register instead
@@ -223,6 +223,8 @@ if !exists('g:vscode')
   Plug 'junegunn/goyo.vim'
   Plug 'arrufat/vala.vim'
   Plug 'editorconfig/editorconfig-vim'
+  Plug 'ledger/vim-ledger'
+  Plug 'OmniSharp/omnisharp-vim'
   call plug#end()
 
 
@@ -264,7 +266,58 @@ if !exists('g:vscode')
     set syntax=html
    endfunction
 
-endif
+   " ******** OmniSharp **********
+   let g:OmniSharp_server_stdio = 0
+   let g:OmniSharp_highlight_types = 3
+   let g:OmniSharp_timeout = 10
+   augroup omnisharp_commands
+     autocmd!
+
+     " Show type information automatically when the cursor stops moving.
+     " Note that the type is echoed to the Vim command line, and will overwrite
+     " any other messages in this space including e.g. ALE linting messages.
+     autocmd CursorHold *.cs OmniSharpTypeLookup
+
+     " The following commands are contextual, based on the cursor position.
+     autocmd FileType cs nnoremap <buffer> gd :OmniSharpGotoDefinition<CR>
+     autocmd FileType cs nnoremap <buffer> <Leader>fi :OmniSharpFindImplementations<CR>
+     autocmd FileType cs nnoremap <buffer> <Leader>fs :OmniSharpFindSymbol<CR>
+     autocmd FileType cs nnoremap <buffer> <Leader>fu :OmniSharpFindUsages<CR>
+
+     " Finds members in the current buffer
+     autocmd FileType cs nnoremap <buffer> <Leader>fm :OmniSharpFindMembers<CR>
+
+     autocmd FileType cs nnoremap <buffer> <Leader>fx :OmniSharpFixUsings<CR>
+     autocmd FileType cs nnoremap <buffer> <Leader>tt :OmniSharpTypeLookup<CR>
+     autocmd FileType cs nnoremap <buffer> <Leader>dc :OmniSharpDocumentation<CR>
+     autocmd FileType cs nnoremap <buffer> <C-\> :OmniSharpSignatureHelp<CR>
+     autocmd FileType cs inoremap <buffer> <C-\> <C-o>:OmniSharpSignatureHelp<CR>
+
+     " Navigate up and down by method/property/field
+     autocmd FileType cs nnoremap <buffer> <C-k> :OmniSharpNavigateUp<CR>
+     autocmd FileType cs nnoremap <buffer> <C-j> :OmniSharpNavigateDown<CR>
+
+     " Find all code errors/warnings for the current solution and populate the quickfix window
+     autocmd FileType cs nnoremap <buffer> <Leader>cc :OmniSharpGlobalCodeCheck<CR>
+   " Contextual code actions (uses fzf, CtrlP or unite.vim when available)
+   autocmd FileType cs nnoremap <buffer> <Leader>. :OmniSharpGetCodeActions<CR>
+   " Run code actions with text selected in visual mode to extract method
+   autocmd FileType cs xnoremap <buffer> <Leader><Space> :call OmniSharp#GetCodeActions('visual')<CR>
+
+   " Rename with dialog
+   autocmd FileType cs nnoremap <buffer> <Leader>nm :OmniSharpRename<CR>
+   autocmd FileType cs nnoremap <buffer> <F2> :OmniSharpRename<CR>
+   " Rename without dialog - with cursor on the symbol to rename: `:Rename newname`
+   command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
+
+   autocmd FileType cs nnoremap <buffer> <Leader>cf :OmniSharpCodeFormat<CR>
+
+   " Start the omnisharp server for the current solution
+   autocmd FileType cs nnoremap <buffer> <Leader>ss :OmniSharpStartServer<CR>
+   autocmd FileType cs nnoremap <buffer> <Leader>sp :OmniSharpStopServer<CR>
+   augroup END
+
+ endif
 
 
 

@@ -126,6 +126,33 @@ inoremap jk <esc>
 inoremap kj <esc>
 
 
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
+" position. Coc only does snippet and additional edit on confirm.
+" <cr> could be remapped by other vim plugin, try `:verbose imap <CR>`.
+if exists('*complete_info')
+  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+else
+  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+endif
+
+
 
 
 " ****** Command mode ******
@@ -227,6 +254,7 @@ if !exists('g:vscode')
   Plug 'editorconfig/editorconfig-vim'
   Plug 'ledger/vim-ledger'
   Plug 'OmniSharp/omnisharp-vim'
+  Plug 'jackguo380/vim-lsp-cxx-highlight'
   call plug#end()
 
 
@@ -330,6 +358,9 @@ if !exists('g:vscode')
     autocmd CursorHold *.hpp CocCommand clangd.symbolInfo
 
     autocmd FileType cpp nnoremap <buffer> <leader>h  :CocCommand clangd.switchSourceHeader<CR>
+    autocmd FileType cpp nnoremap <buffer> <leader>d  :!clang-format -style=file -i %<cr>
+
+
 
   augroup END
 

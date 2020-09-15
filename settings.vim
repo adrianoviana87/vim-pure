@@ -364,4 +364,7 @@ if !exists('g:vscode')
 
   augroup END
 
+  command! -nargs=* T split | terminal <args>
+  command! -nargs=* VT vsplit | terminal <args>
+
 endif "not in vscode

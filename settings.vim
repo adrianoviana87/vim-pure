@@ -248,7 +248,6 @@ if !exists('g:vscode')
   Plug 'vim-airline/vim-airline-themes'
   Plug 'flazz/vim-colorschemes'
   Plug 'morhetz/gruvbox'
-  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
   Plug 'junegunn/goyo.vim'
   Plug 'arrufat/vala.vim'
   Plug 'editorconfig/editorconfig-vim'

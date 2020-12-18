@@ -80,11 +80,13 @@ syntax enable
 set nospell
 set spelllang=en
 set background=dark
+set t_Co=256
 set nocursorline
 filetype plugin indent on
 filetype indent on
 set hlsearch
 set termguicolors
+" set term=screen-256color
 
 
 
@@ -176,6 +178,10 @@ nnoremap <leader>+ :Limelight!!<cr>
 nnoremap <leader>o :CocList outline<cr>
 nnoremap <leader>r :CocListResume<cr>
 nnoremap <leader>d gg=Gg;
+nnoremap <leader>tc :CocCommand todolist.create<cr>
+nnoremap <leader>tl :CocList todolist<cr>
+nnoremap <leader>tt :CocCommand terminal.toggle<cr>
+
 
 " go to previous next error
 nnoremap <down> :cnext<cr>

@@ -126,6 +126,7 @@ set guioptions-=m " no menubar
 inoremap <c-J> <esc>
 inoremap jk <esc>
 inoremap kj <esc>
+inoremap <c-\> <esc>:CocCommand terminal.Toggle<cr>
 
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -180,7 +181,8 @@ nnoremap <leader>r :CocListResume<cr>
 nnoremap <leader>d gg=Gg;
 nnoremap <leader>tc :CocCommand todolist.create<cr>
 nnoremap <leader>tl :CocList todolist<cr>
-nnoremap <leader>tt :CocCommand terminal.toggle<cr>
+nnoremap <leader>tt :CocCommand terminal.Toggle<cr>
+nnoremap <c-\> :CocCommand terminal.Toggle<cr>
 
 
 " go to previous next error
@@ -200,6 +202,7 @@ nnoremap <right> :clast<cr>
 
 " ****** Terminal mode *******
 tnoremap <c-j> <c-\><c-n>
+tnoremap <c-\> <c-\><c-n>:CocCommand terminal.Toggle<cr>
 
 
 
@@ -260,6 +263,7 @@ if !exists('g:vscode')
   Plug 'ledger/vim-ledger'
   Plug 'OmniSharp/omnisharp-vim'
   Plug 'jackguo380/vim-lsp-cxx-highlight'
+  Plug 'pangloss/vim-javascript'
   call plug#end()
 
 
@@ -291,7 +295,8 @@ if !exists('g:vscode')
   silent! colorscheme OceanicNext
 
 
-
+  " ****** javascript *******
+  let g:javascript_plugin_jsdoc = 1
 
   " ****** vuejs ******
   augroup VueJsFiletypeGroup

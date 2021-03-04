@@ -1,4 +1,11 @@
 {
   "clangd.arguments": ["--background-index", "--compile-commands-dir=build"],
-  "clangd.semanticHighlighting": true
+  "clangd.semanticHighlighting": true,
+  "explorer.width": 30,
+  "explorer.file.showHiddenFiles": true,
+  "explorer.file.autoReveal": false,
+  "explorer.openAction.relativePath": false,
+  "explorer.icon.enableVimDevicons": false,
+  "explorer.icon.enableNerdfont": true,
+  "explorer.previewAction.onHover": false
 }

@@ -186,9 +186,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 
-
-
-
 " ****** Command mode ******
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
@@ -204,7 +201,8 @@ nnoremap <leader>P :CocList vimcommands<cr>
 nnoremap <c-p> :CocList files<cr>
 nnoremap <c-m> :CocList mru<cr>
 nnoremap <leader>f :CocList grep<cr>
-nnoremap <c-n> :CocCommand explorer<cr>
+nnoremap <c-n> :CocCommand explorer <cr>
+nnoremap <Leader>er :call CocAction('runCommand', 'explorer.doAction', 'closest', ['reveal:0'], [['relative', 0, 'file']])<CR>
 nnoremap <leader>= :Goyo<cr>
 nnoremap <leader>+ :Limelight!!<cr>
 nnoremap <leader>o :CocList outline<cr>
@@ -315,7 +313,7 @@ if !exists('g:vscode')
   " Set this. Airline will handle the rest.
   let g:airline#extensions#ale#enabled = 1
   let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-  let g:airline_powerline_fonts = 0
+  let g:airline_powerline_fonts = 1
 
 
 

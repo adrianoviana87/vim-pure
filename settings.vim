@@ -29,7 +29,7 @@ set wildignore+=node_modues/**
 set backspace=indent,eol,start
 
 set undodir=~/vimundo
-
+set colorcolumn=80
 
 
 
@@ -189,6 +189,7 @@ nmap <leader>rn <Plug>(coc-rename)
 " ****** Command mode ******
 let mapleader = "\<Space>"
 let g:mapleader = "\<Space>"
+let maplocalleader="\<Space>"
 cnoremap <c-j> <up>
 cnoremap <c-k> <down>
 " ****** Normal mode ******
@@ -295,6 +296,11 @@ if !exists('g:vscode')
   Plug 'joshdick/onedark.vim'
   Plug 'maxmellon/vim-jsx-pretty'
   Plug 'yuezk/vim-js'
+  Plug 'marcopaganini/mojave-vim-theme'
+  Plug 'marcopaganini/termschool-vim-theme'
+  Plug 'atahabaki/archman-vim'
+  Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
+  Plug 'freitass/todo.txt-vim'
 
 
   call plug#end()
@@ -320,12 +326,12 @@ if !exists('g:vscode')
 
   " ****** airline ******
   let g:airline#extensions#tabline#enabled = 0
-  let g:airline_theme='base16_default'
+  let g:airline_theme='challenger_deep'
 
 
 
   " ****** colorscheme ******
-  silent! colorscheme onedark
+  silent! colorscheme challenger_deep
 
 
   " ****** javascript *******

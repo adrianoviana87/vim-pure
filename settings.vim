@@ -20,7 +20,7 @@ set emoji
 set history=1000
 set wildmenu
 set wildignorecase
-set wildignore+=node_modues/**
+set wildignore+=node_modules/**
 
 
 
@@ -104,7 +104,7 @@ set mouse=a
 
 
 " ****** gui ******
-set guifont=JetBrainsMono\ NF:h10
+set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h20
 set guioptions+=! " execute commands inside vim terminal emulator
 set guioptions-=a " set selection to system clipboard but not in * register
 set guioptions+=P " set selection to system clipboard in + register instead
@@ -118,6 +118,7 @@ set guioptions-=l " left hand scrollbar not always present
 set guioptions-=L " left hand scrollbar not present when there is a vsplit
 set guioptions-=b " no bottom scrollbar
 set guioptions-=m " no menubar
+set splitright
 
 
 
@@ -415,6 +416,10 @@ if !exists('g:vscode')
 
   command! -nargs=* T split | terminal <args>
   command! -nargs=* VT vsplit | terminal <args>
+  let g:neovide_cursor_animation_length=0.1
+  let g:neovide_cursor_trail_length=0.8
+  let g:neovide_cursor_antialiasing=v:false
+  let g:neovide_cursor_vfx_mode="wireframe"
 
 endif "not in vscode
 

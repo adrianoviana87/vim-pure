@@ -204,7 +204,6 @@ nnoremap <c-p> :CocList files<cr>
 nnoremap <c-m> :CocList mru<cr>
 nnoremap <leader>f :CocList grep<cr>
 nnoremap <c-n> :CocCommand explorer <cr>
-nnoremap <Leader>er :call CocAction('runCommand', 'explorer.doAction', 'closest', ['reveal:0'], [['relative', 0, 'file']])<CR>
 nnoremap <leader>= :Goyo<cr>
 nnoremap <leader>+ :Limelight!!<cr>
 nnoremap <leader>o :CocList outline<cr>
@@ -215,6 +214,8 @@ nnoremap <leader>tl :CocList todolist<cr>
 nnoremap <leader>tt :CocCommand terminal.Toggle<cr>
 nnoremap <c-\> :CocCommand terminal.Toggle<cr>
 nnoremap <leader>cm :CocList marketplace<cr>
+nnoremap <leader>j :CocNext<cr>
+nnoremap <leader>k :CocPrev<cr>
 
 " go to previous next error
 nnoremap <down> :cnext<cr>

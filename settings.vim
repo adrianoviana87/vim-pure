@@ -104,13 +104,13 @@ set mouse=a
 
 
 " ****** gui ******
-set guifont=CaskaydiaCove\ Nerd\ Font\ Mono:h20
+set guifont=SFMono\ Nerd\ Font:h14
 set guioptions+=! " execute commands inside vim terminal emulator
 set guioptions-=a " set selection to system clipboard but not in * register
 set guioptions+=P " set selection to system clipboard in + register instead
 set guioptions+=c " use console dialog for simple choices
 set guioptions+=e " show tab pages in gui
-set guioptions-=t " no option to dettach system menu
+set guioptions-=t " no option to detach system menu
 set guioptions-=T " no toolbar
 set guioptions-=r " right hand scrollbar not always present
 set guioptions-=R " right hand scrollbar not present when there is a vsplit
@@ -334,7 +334,7 @@ if !exists('g:vscode')
 
   " ****** colorscheme ******
   silent! colorscheme challenger_deep
-
+  hi Normal guibg=NONE ctermbg=NONE
 
   " ****** javascript *******
   let g:javascript_plugin_jsdoc = 1

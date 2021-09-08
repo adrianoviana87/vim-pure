@@ -49,6 +49,8 @@ set confirm " Display a confirmation dialog when closing an unsaved file
 set autoread
 set nowb
 set backupdir==~/vimbackup//
+set modeline
+set nobackup
 
 
 
@@ -250,6 +252,7 @@ let g:netrw_banner = 0
 
 " ****** the swap file ******
 set directory=$HOME/vimswp//
+set noswapfile
 
 
 
@@ -283,6 +286,7 @@ if !exists('g:vscode')
   Plug 'sgur/vim-textobj-parameter'
   Plug 'tpope/vim-surround'
   Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-fugitive'
   Plug 'w0rp/ale'
   Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
   Plug 'vim-airline/vim-airline'
@@ -300,7 +304,6 @@ if !exists('g:vscode')
   Plug 'yuezk/vim-js'
   Plug 'marcopaganini/mojave-vim-theme'
   Plug 'marcopaganini/termschool-vim-theme'
-  Plug 'atahabaki/archman-vim'
   Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
   Plug 'freitass/todo.txt-vim'
 
@@ -421,6 +424,11 @@ if !exists('g:vscode')
   let g:neovide_cursor_trail_length=0.8
   let g:neovide_cursor_antialiasing=v:false
   let g:neovide_cursor_vfx_mode="wireframe"
+
+  " GIT
+  nnoremap <leader>gs :Git<cr>
+  nnoremap <leader>gc :Git commit<cr>
+  nnoremap <leader>gp :Git push<cr>
 
 endif "not in vscode
 

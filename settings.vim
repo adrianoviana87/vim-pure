@@ -70,8 +70,8 @@ set nowrap
 set linebreak
 set scrolloff=3 " The number of screen lines to keep above and below the cursor
 set sidescrolloff=5 " The number of screen columns to keep to the left and right of the cursor
-" if has("win32") || has("win64")
-"   set renderoptions=type:directx,gamma:1.5,contrast:0.5,geom:1,renmode:5,taamode:1,level:0.5
+
+
 " endif
 
 
@@ -81,14 +81,12 @@ set sidescrolloff=5 " The number of screen columns to keep to the left and right
 syntax enable
 set nospell
 set spelllang=en
-set background=dark
 set t_Co=256
 set nocursorline
 filetype plugin indent on
 filetype indent on
 set hlsearch
 set termguicolors
-" set term=screen-256color
 
 
 
@@ -206,18 +204,34 @@ nnoremap <c-p> :CocList files<cr>
 nnoremap <c-m> :CocList mru<cr>
 nnoremap <leader>f :CocList grep<cr>
 nnoremap <c-n> :CocCommand explorer <cr>
+nnoremap <Leader>, <Cmd>call CocAction('runCommand', 'explorer.doAction', 'closest', ['reveal:0'], [['relative', 0, 'file']])<CR>
 nnoremap <leader>= :Goyo<cr>
 nnoremap <leader>+ :Limelight!!<cr>
 nnoremap <leader>o :CocList outline<cr>
 nnoremap <leader>r :CocListResume<cr>
 nnoremap <leader>d gg=Gg;
-nnoremap <leader>tc :CocCommand todolist.create<cr>
-nnoremap <leader>tl :CocList todolist<cr>
 nnoremap <leader>tt :CocCommand terminal.Toggle<cr>
 nnoremap <c-\> :CocCommand terminal.Toggle<cr>
 nnoremap <leader>cm :CocList marketplace<cr>
 nnoremap <leader>j :CocNext<cr>
 nnoremap <leader>k :CocPrev<cr>
+nnoremap <leader>cl :color zellner<cr> :set background=light<cr> :AirlineTheme base16_google_light<cr>
+nnoremap <leader>cd :color onedark<cr> :set background=dark<cr> :AirlineTheme onedark<cr>
+
+" search all non-checked checkboxes in a markdown format
+nnoremap <leader>td /\[ \]<cr>
+
+" search all checkbox in indeterminate status (markdown format)
+nnoremap <leader>tc /\[-\]<cr>
+
+" marks the todo item as done
+nnoremap <leader>tx 0f[lrx
+
+" adds a new todo item below
+nnoremap <leader>tn :norm o- [ ] <cr>
+
+" marks the todo item as current
+nnoremap <leader>tw 0f[lr-
 
 " go to previous next error
 nnoremap <down> :cnext<cr>
@@ -230,6 +244,9 @@ nnoremap <left> :cfirst<cr>
 
 " go to last error
 nnoremap <right> :clast<cr>
+
+" print current file's path
+nnoremap <leader>pwd :echo expand('%')<cr>
 
 
 
@@ -306,7 +323,9 @@ if !exists('g:vscode')
   Plug 'marcopaganini/termschool-vim-theme'
   Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
   Plug 'freitass/todo.txt-vim'
-
+  Plug 'jacoborus/tender.vim'
+  Plug 'rktjmp/lush.nvim'
+  Plug 'alaric/nortia.nvim'  
 
   call plug#end()
 
@@ -325,19 +344,24 @@ if !exists('g:vscode')
   let g:airline#extensions#ale#enabled = 1
   let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   let g:airline_powerline_fonts = 1
-
+  let g:airline#extensions#branch#displayed_head_limit = 10
 
 
 
   " ****** airline ******
-  let g:airline#extensions#tabline#enabled = 0
-  let g:airline_theme='challenger_deep'
+  let g:airline#extensions#tabline#enabled = 1
+  let g:airline_theme='onedark'
 
 
 
   " ****** colorscheme ******
-  silent! colorscheme challenger_deep
+  silent! colorscheme onedark
+  " For Neovim 0.1.3 and 0.1.4
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  set background=dark
+
   hi Normal guibg=NONE ctermbg=NONE
+  " highlight CocSelectedLine guibg=BLUE
 
   " ****** javascript *******
   let g:javascript_plugin_jsdoc = 1
@@ -429,6 +453,8 @@ if !exists('g:vscode')
   nnoremap <leader>gs :Git<cr>
   nnoremap <leader>gc :Git commit<cr>
   nnoremap <leader>gp :Git push<cr>
+  let g:coc_git_status=""
+  let b:coc_git_status=""
 
 endif "not in vscode
 
@@ -447,3 +473,23 @@ if (empty($TMUX))
     set termguicolors
   endif
 endif
+
+" Commands
+
+command! -nargs=0 NoteTaking :tabedit ~/Documents/note-taking/tatango.todo.md
+command! -nargs=0 PrTemplate :tabedit ~/Documents/note-taking/tatango.pr.template.md
+command! -nargs=0 AlacrittyConfig :tabedit ~/.config/alacritty/alacritty.yml
+command! -nargs=0 FontRanking :tabedit ~/Documents/note-taking/fonts-ranking.md
+
+
+function CopyPath()
+	let @*=expand('%')
+endfunction
+
+function CopyFileName()
+	let @*=expand('%:t')
+endfunction
+
+command! -nargs=0 CopyPath call CopyPath()
+command! -nargs=0 CopyFileName call CopyFileName()
+

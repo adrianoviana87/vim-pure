@@ -235,7 +235,10 @@ nnoremap <leader>tn :norm o- [ ] <cr>
 nnoremap <leader>tw 0f[lr-
 
 " open jira ticket under the cursor
-nnoremap <leader>j yiW:!xdg-open https://tatango.atlassian.net/browse/<C-R>0<cr>
+nnoremap <leader>j :OpenJira<cr>
+
+" open PR on github
+nnoremap <leader>pv :GhPrView<cr>
 
 " go to previous next error
 nnoremap <down> :cnext<cr>
@@ -497,3 +500,5 @@ endfunction
 command! -nargs=0 CopyPath call CopyPath()
 command! -nargs=0 CopyFileName call CopyFileName()
 command! Date :normal a<C-R>=strftime('[%Y-%m-%dT%H:%M]')<CR>
+command! OpenJira :normal yiW:!xdg-open https://tatango.atlassian.net/browse/<C-R>0<cr>
+command! GhPrView :normal T#yw:!xdg-open https://github.com/tatango/backend/pull/<C-R>0<cr>

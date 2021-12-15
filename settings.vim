@@ -128,6 +128,7 @@ inoremap <c-J> <esc>
 inoremap jk <esc>
 inoremap kj <esc>
 inoremap <c-\> <esc>:CocCommand terminal.Toggle<cr>
+inoremap idate <C-O>:Date<cr>
 
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -232,6 +233,9 @@ nnoremap <leader>tn :norm o- [ ] <cr>
 
 " marks the todo item as current
 nnoremap <leader>tw 0f[lr-
+
+" open jira ticket under the cursor
+nnoremap <leader>j yiW:!xdg-open https://tatango.atlassian.net/browse/<C-R>0<cr>
 
 " go to previous next error
 nnoremap <down> :cnext<cr>
@@ -492,4 +496,4 @@ endfunction
 
 command! -nargs=0 CopyPath call CopyPath()
 command! -nargs=0 CopyFileName call CopyFileName()
-
+command! Date :normal a<C-R>=strftime('[%Y-%m-%dT%H:%M]')<CR>

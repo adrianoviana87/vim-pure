@@ -104,7 +104,7 @@ set mouse=a
 
 
 " ****** gui ******
-set guifont=SFMono\ Nerd\ Font:h14
+set guifont=Cousine\ Nerd\ Font:h14
 set guioptions+=! " execute commands inside vim terminal emulator
 set guioptions-=a " set selection to system clipboard but not in * register
 set guioptions+=P " set selection to system clipboard in + register instead
@@ -219,20 +219,28 @@ nnoremap <leader>k :CocPrev<cr>
 nnoremap <leader>cl :color zellner<cr> :set background=light<cr> :AirlineTheme base16_google_light<cr>
 nnoremap <leader>cd :color onedark<cr> :set background=dark<cr> :AirlineTheme onedark<cr>
 
-" search all non-checked checkboxes in a markdown format
-nnoremap <leader>td /\[ \]<cr>
+let g:markdown_folding = 1
 
-" search all checkbox in indeterminate status (markdown format)
-nnoremap <leader>tc /\[-\]<cr>
+" search all non-checked checkboxes in a markdown format
+nnoremap <leader>td /<cr>
+
+" search all checkbox in edit status (markdown format)
+nnoremap <leader>tc /<cr>
 
 " marks the todo item as done
-nnoremap <leader>tx 0f[lrx
+nnoremap <leader>tx r
 
 " adds a new todo item below
-nnoremap <leader>tn :norm o- [ ] <cr>
+nnoremap <leader>tn o-  
+
+" adds a new todo subitem below
+nnoremap <leader>ts o-  <C-O>>><C-O>A
 
 " marks the todo item as current
-nnoremap <leader>tw 0f[lr-
+nnoremap <leader>tw r
+
+" marks the todo item as indeterminate
+nnoremap <leader>ti r
 
 " open jira ticket under the cursor
 nnoremap <leader>j :OpenJira<cr>
@@ -253,7 +261,7 @@ nnoremap <left> :cfirst<cr>
 nnoremap <right> :clast<cr>
 
 " print current file's path
-nnoremap <leader>pwd :echo expand('%')<cr>
+nnoremap <leader>pwd :Pwd<cr>
 
 
 
@@ -451,10 +459,19 @@ if !exists('g:vscode')
 
   command! -nargs=* T split | terminal <args>
   command! -nargs=* VT vsplit | terminal <args>
-  let g:neovide_cursor_animation_length=0.1
-  let g:neovide_cursor_trail_length=0.8
+
+  " **** Neovide ***
+  let g:neovide_cursor_animation_length=0.15
+  let g:neovide_cursor_trail_length=1
   let g:neovide_cursor_antialiasing=v:false
-  let g:neovide_cursor_vfx_mode="wireframe"
+  let g:neovide_cursor_vfx_mode = "torpedo"
+" other options for particles: pixiedust
+  let g:neovide_cursor_vfx_particle_lifetime=10
+  let g:neovide_cursor_vfx_opacity=250.0
+  let g:neovide_cursor_vfx_particle_density=30
+  let g:neovide_cursor_vfx_particle_speed=20.0
+  let g:neovide_cursor_vfx_particle_phase=1.5
+  let g:neovide_fullscreen=v:false
 
   " GIT
   nnoremap <leader>gs :Git<cr>
@@ -499,6 +516,9 @@ endfunction
 
 command! -nargs=0 CopyPath call CopyPath()
 command! -nargs=0 CopyFileName call CopyFileName()
-command! Date :normal a<C-R>=strftime('[%Y-%m-%dT%H:%M]')<CR>
+command! Date :normal a<C-R>=strftime(' %Y-%m-%dT%H:%M')<CR>
 command! OpenJira :normal yiW:!xdg-open https://tatango.atlassian.net/browse/<C-R>0<cr>
-command! GhPrView :normal T#yw:!xdg-open https://github.com/tatango/backend/pull/<C-R>0<cr>
+command! GhPrView :normal yiw:!xdg-open https://github.com/tatango/backend/pull/<C-R>0<cr>
+command! Todos :tabedit ~/Documents/note-taking/tatango.todo.md
+command! Pwd :echo expand('%')
+command! ConfigNeovim :tabedit ~/vim-pure/settings.vim

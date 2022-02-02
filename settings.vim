@@ -219,7 +219,7 @@ nnoremap <leader>k :CocPrev<cr>
 nnoremap <leader>cl :color zellner<cr> :set background=light<cr> :AirlineTheme base16_google_light<cr>
 nnoremap <leader>cd :color onedark<cr> :set background=dark<cr> :AirlineTheme onedark<cr>
 
-let g:markdown_folding = 1
+let g:markdown_folding = 2
 
 " search all non-checked checkboxes in a markdown format
 nnoremap <leader>td /<cr>
@@ -341,6 +341,7 @@ if !exists('g:vscode')
   Plug 'jacoborus/tender.vim'
   Plug 'rktjmp/lush.nvim'
   Plug 'alaric/nortia.nvim'  
+  Plug 'junegunn/seoul256.vim'
 
   call plug#end()
 
@@ -370,7 +371,7 @@ if !exists('g:vscode')
 
 
   " ****** colorscheme ******
-  silent! colorscheme onedark
+  silent! colorscheme seoul256-light
   " For Neovim 0.1.3 and 0.1.4
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
   set background=dark

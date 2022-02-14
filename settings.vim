@@ -219,8 +219,6 @@ nnoremap <leader>k :CocPrev<cr>
 nnoremap <leader>cl :color zellner<cr> :set background=light<cr> :AirlineTheme base16_google_light<cr>
 nnoremap <leader>cd :color onedark<cr> :set background=dark<cr> :AirlineTheme onedark<cr>
 
-let g:markdown_folding = 2
-
 " search all non-checked checkboxes in a markdown format
 nnoremap <leader>td /<cr>
 

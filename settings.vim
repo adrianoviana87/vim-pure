@@ -72,9 +72,6 @@ set scrolloff=3 " The number of screen lines to keep above and below the cursor
 set sidescrolloff=5 " The number of screen columns to keep to the left and right of the cursor
 
 
-" endif
-
-
 
 
 " ****** syntax, highlighting and spelling ******
@@ -205,7 +202,7 @@ nnoremap <c-p> :CocList files<cr>
 nnoremap <c-m> :CocList mru<cr>
 nnoremap <leader>f :CocList grep<cr>
 nnoremap <c-n> :CocCommand explorer <cr>
-nnoremap <Leader>, <Cmd>call CocAction('runCommand', 'explorer.doAction', 'closest', ['reveal:0'], [['relative', 0, 'file']])<CR>
+nnoremap <leader>, <Cmd>call CocAction('runCommand', 'explorer.doAction', 'closest', ['reveal:0'], [['relative', 0, 'file']])<CR>
 nnoremap <leader>= :Goyo<cr>
 nnoremap <leader>+ :Limelight!!<cr>
 nnoremap <leader>o :CocList outline<cr>
@@ -220,25 +217,23 @@ nnoremap <leader>cl :color zellner<cr> :set background=light<cr> :AirlineTheme b
 nnoremap <leader>cd :color onedark<cr> :set background=dark<cr> :AirlineTheme onedark<cr>
 
 " search all non-checked checkboxes in a markdown format
-nnoremap <leader>td /<cr>
+nnoremap <leader>td /🔳<cr>
 
 " search all checkbox in edit status (markdown format)
 nnoremap <leader>tc /<cr>
 
 " marks the todo item as done
-nnoremap <leader>tx r
+nnoremap <leader>tx r✅
 
 " adds a new todo item below
-nnoremap <leader>tn o-  
+nnoremap <leader>tn o- 🔳 
 
 " adds a new todo subitem below
-nnoremap <leader>ts o-  <C-O>>><C-O>A
+nnoremap <leader>ts o- 🔳 <C-O>>><C-O>A
 
 " marks the todo item as current
-nnoremap <leader>tw r
+nnoremap <leader>tw r👉
 
-" marks the todo item as indeterminate
-nnoremap <leader>ti r
 
 " open jira ticket under the cursor
 nnoremap <leader>j :OpenJira<cr>
@@ -516,6 +511,7 @@ endfunction
 command! -nargs=0 CopyPath call CopyPath()
 command! -nargs=0 CopyFileName call CopyFileName()
 command! Date :normal a<C-R>=strftime(' %Y-%m-%dT%H:%M')<CR>
+command! TimeTrackingNewRow :normal o<C-R>=strftime('%Y-%m-%d')<CR>,00:00,00:00,,JUP-,<ESC>0f,l
 command! OpenJira :normal yiW:!xdg-open https://tatango.atlassian.net/browse/<C-R>0<cr>
 command! GhPrView :normal yiw:!xdg-open https://github.com/tatango/backend/pull/<C-R>0<cr>
 command! Todos :tabedit ~/Documents/note-taking/tatango.todo.md

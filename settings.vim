@@ -217,19 +217,19 @@ nnoremap <leader>cl :color zellner<cr> :set background=light<cr> :AirlineTheme b
 nnoremap <leader>cd :color onedark<cr> :set background=dark<cr> :AirlineTheme onedark<cr>
 
 " search all non-checked checkboxes in a markdown format
-nnoremap <leader>td /🔳<cr>
+nnoremap <leader>td /☐<cr>
 
 " search all checkbox in edit status (markdown format)
-nnoremap <leader>tc /<cr>
+nnoremap <leader>tc /👉<cr>
 
 " marks the todo item as done
-nnoremap <leader>tx r✅
+nnoremap <leader>tx r☑
 
 " adds a new todo item below
-nnoremap <leader>tn o- 🔳 
+nnoremap <leader>tn o- ☐ 
 
 " adds a new todo subitem below
-nnoremap <leader>ts o- 🔳 <C-O>>><C-O>A
+nnoremap <leader>ts o- ☐ <C-O>>><C-O>A
 
 " marks the todo item as current
 nnoremap <leader>tw r👉
@@ -338,8 +338,7 @@ if !exists('g:vscode')
 
   call plug#end()
 
-
-
+  let dark_light = exists('$THEME_COLOR') ? $THEME_COLOR : 'dark'
 
   " ****** ALE ******
   let g:ale_linters = {
@@ -359,15 +358,23 @@ if !exists('g:vscode')
 
   " ****** airline ******
   let g:airline#extensions#tabline#enabled = 1
-  let g:airline_theme='onedark'
+
+  let g:airline_theme= dark_light == 'dark' ? 'onedark' : 'base16_google_light'
+
 
 
 
   " ****** colorscheme ******
-  silent! colorscheme seoul256-light
   " For Neovim 0.1.3 and 0.1.4
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  set background=dark
+  
+  if dark_light == 'dark'
+    set background=dark
+    silent! colorscheme seoul256-light
+  else
+    set background=light
+    silent! colorscheme zellner
+  endif
 
   hi Normal guibg=NONE ctermbg=NONE
   " highlight CocSelectedLine guibg=BLUE

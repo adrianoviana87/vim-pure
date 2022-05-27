@@ -370,7 +370,7 @@ if !exists('g:vscode')
   
   if dark_light == 'dark'
     set background=dark
-    silent! colorscheme seoul256-light
+    silent! colorscheme seoul256
   else
     set background=light
     silent! colorscheme zellner
